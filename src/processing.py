@@ -1,4 +1,3 @@
-from typing import Union
 
 
 def filter_by_state(list_dict: [str | int]) -> [str | int]:
@@ -11,8 +10,6 @@ def filter_by_state(list_dict: [str | int]) -> [str | int]:
         elif i["state"] == "CANCELED":
             list_cncl.append(i)
     return f"{list_ex}\n{list_cncl}"
-
-
 
 
 def sort_by_date(list_dict: [str | int]) -> [str | int]:
