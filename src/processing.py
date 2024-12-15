@@ -1,7 +1,8 @@
-from typing import Any
+from typing import Dict, List, Union
 
 
-def filter_by_state(list_dict: list[dict[str, Any]], state_str: str = "EXECUTED") -> list[dict[str, Any]]:
+def filter_by_state(list_dict: List[Dict[str,Union[str, int]]],
+                    state_str: str = "EXECUTED") -> List[Dict[str,Union[str, int]]]:
     """Функция возвращает новый список словарей, у которых ключ state  соответствует определенному значению."""
     new_list = []
 
@@ -11,7 +12,8 @@ def filter_by_state(list_dict: list[dict[str, Any]], state_str: str = "EXECUTED"
     return new_list
 
 
-def sort_by_date(list_dict: list[dict[str, Any]], reverse_str: bool = "True") -> list[dict[str, Any]]:
+def sort_by_date(list_dict: List[Dict[str,Union[str, int]]],
+                 reverse_str: bool = True) -> List[Dict[str,Union[str, int]]]:
     """Функция сортировки по дате по убыванию"""
     sorted_list = sorted(list_dict, key=lambda x: x["date"], reverse=reverse_str)
 
