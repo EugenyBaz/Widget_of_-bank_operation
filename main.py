@@ -40,8 +40,16 @@ if __name__ == "__main__":
         )
     )
 
+if __name__ == "__main__":
 
-    reverse_str = eval(input("Введите порядок сортировки True(сначала новые) или False(сначала ранние)"))
+    reverse = input("Введите порядок сортировки True(сначала новые) или False(сначала ранние)")
+    reverse_up= reverse.title()
+    if reverse_up == "True":
+        reverse_str = True
+    else:
+        reverse_str = False
+
+
     print(
         sort_by_date(
             [
