@@ -1,5 +1,20 @@
+from src.masks import get_mask_card_number, get_mask_account
 from src.widget import mask_account_card, get_date
 from src.processing import filter_by_state, sort_by_date
+
+if __name__ == "__main__":
+
+    number_card = input("Введите номер карты")
+    """Вывод номера карты в скрытом виде"""
+
+    print(get_mask_card_number(number_card))
+
+    number_account = input("Введите номер счета")
+    """Вывод номера счета в скрытом виде"""
+
+    print(get_mask_account(number_account))
+
+
 
 if __name__ == "__main__":
     number_card = input("Введите номер карты или счета")
@@ -10,8 +25,6 @@ if __name__ == "__main__":
 
 
 if __name__ == "__main__":
-
-
 
     state = input ("Введите статус")
     state_str = state.upper()
