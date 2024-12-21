@@ -18,4 +18,6 @@ def mask_account_card(number_card: Union[str]) -> Union[str]:
 
 def get_date(date: Union[str]) -> Union[str]:
     """Форматирование даты"""
+    if date == "":
+        raise ValueError ("Введите дату")
     return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
