@@ -17,14 +17,14 @@ def test_mask_account_card(number_card: str, expected: str) -> None:
     assert mask_account_card(number_card) == expected
 
 
-def test_mask_invalid_account_card(number_card: str)-> None:
+def test_mask_invalid_account_card(number_card: str) -> None:
     """Тест для проверки вызова ошибки при некорректном введении номера счета"""
     with pytest.raises(ValueError):
         mask_account_card("Счет 8970605943211234567")
 
 
 @pytest.fixture
-def date(date: str)-> List[str]:
+def date(date: str) -> List[str]:
     return ["2024-03-11T02:26:18.671407", "2024-12-31"]
 
 
@@ -36,7 +36,7 @@ def test_get_date(date: str, expected: str) -> None:
     assert get_date(date) == expected
 
 
-def test_get_invalid_date(date:str) -> None:
+def test_get_invalid_date(date: str) -> None:
     """Тест для проверки вызова ошибки при отсутствии даты"""
     with pytest.raises(ValueError):
         get_date("")

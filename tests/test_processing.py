@@ -4,7 +4,7 @@ from typing import Dict, List, Union
 
 
 @pytest.fixture
-def filter_dict(filter :List[Dict[str,Union[str, int]]]) -> List[Dict[str,Union[str, int]]]:
+def filter_dict(filter: List[Dict[str, Union[str, int]]]) -> List[Dict[str, Union[str, int]]]:
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
@@ -31,8 +31,9 @@ def filter_dict(filter :List[Dict[str,Union[str, int]]]) -> List[Dict[str,Union[
         )
     ],
 )
-def test_filter_by_state(filter_dict:List[Dict[str,Union[str, int]]], state_str:str,
-                         expected:List[Dict[str,Union[str, int]]])-> None:
+def test_filter_by_state(
+    filter_dict: List[Dict[str, Union[str, int]]], state_str: str, expected: List[Dict[str, Union[str, int]]]
+) -> None:
     """Проверка работы функции  фильтрации списка словарей по заданному статусу state"""
     assert (
         filter_by_state(
@@ -65,8 +66,9 @@ def test_filter_by_state(filter_dict:List[Dict[str,Union[str, int]]], state_str:
         )
     ],
 )
-def test_filter_by_state_default(filter_dict: List[Dict[str,Union[str, int]]],
-                                 expected: List[Dict[str,Union[str, int]]]) -> None:
+def test_filter_by_state_default(
+    filter_dict: List[Dict[str, Union[str, int]]], expected: List[Dict[str, Union[str, int]]]
+) -> None:
     """Проверка работы функции с дефолтным значением state - должно быть отфильтровано по EXECUTED"""
     assert (
         filter_by_state(
@@ -82,7 +84,7 @@ def test_filter_by_state_default(filter_dict: List[Dict[str,Union[str, int]]],
 
 
 @pytest.fixture
-def sort_dict(filter:List[Dict[str,Union[str, int]]]) -> List[Dict[str,Union[str, int]]]:
+def sort_dict(filter: List[Dict[str, Union[str, int]]]) -> List[Dict[str, Union[str, int]]]:
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
@@ -111,8 +113,9 @@ def sort_dict(filter:List[Dict[str,Union[str, int]]]) -> List[Dict[str,Union[str
         )
     ],
 )
-def test_sort_by_date(sort_dict:List[Dict[str,Union[str, int]]],
-                      reverse_str: str, expected: List[Dict[str,Union[str, int]]]) -> None:
+def test_sort_by_date(
+    sort_dict: List[Dict[str, Union[str, int]]], reverse_str: str, expected: List[Dict[str, Union[str, int]]]
+) -> None:
     """Тестирование сортировки по дате"""
     assert (
         sort_by_date(
@@ -128,7 +131,7 @@ def test_sort_by_date(sort_dict:List[Dict[str,Union[str, int]]],
     )
 
 
-def test_invalid_sort_by_date(sort_dict:List[Dict[str,Union[str, int]]]) -> None :
+def test_invalid_sort_by_date(sort_dict: List[Dict[str, Union[str, int]]]) -> None:
     """Проверка вызова ошибки отсутствия даты  в списке"""
     with pytest.raises(ValueError):
         sort_by_date(

@@ -32,12 +32,12 @@ def number_account(numbet: str) -> List[str]:
 @pytest.mark.parametrize(
     "number_account, expected", [("12345678900987654321", "**4321"), ("89706059432112345678", "**5678")]
 )
-def test_get_mask_account(number_account: str, expected: str)-> None:
+def test_get_mask_account(number_account: str, expected: str) -> None:
     """Тестирование на правильность маскировки счета"""
     assert get_mask_account(number_account) == expected
 
 
-def test_get_mask_invalid_account(number_account:str) -> None:
+def test_get_mask_invalid_account(number_account: str) -> None:
     """Тестирование на вызов ошибки при вводе пустого списка"""
     with pytest.raises(ValueError):
         get_mask_account("")
