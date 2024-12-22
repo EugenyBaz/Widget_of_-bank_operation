@@ -132,7 +132,7 @@ def test_sort_by_date(
 
 
 def test_invalid_sort_by_date(sort_dict: List[Dict[str, Union[str, int]]]) -> None:
-    """Проверка вызова ошибки отсутствия даты  в списке"""
+    """Проверка вызова ошибки отсутствия даты в списке"""
     with pytest.raises(ValueError):
         sort_by_date(
             [
