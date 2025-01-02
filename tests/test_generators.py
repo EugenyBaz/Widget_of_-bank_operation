@@ -1,5 +1,5 @@
 import pytest
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
 @pytest.mark.parametrize(
@@ -298,8 +298,10 @@ def test_transaction_descriptions(transactions_discr, expected):
 
 
 
+@pytest.mark.parametrize("start, stop, expected", [(1111, 1115,["0000 0000 0000 1111","0000 0000 0000 1112", "0000 0000 0000 1113", "0000 0000 0000 1114"])])
 
-
+def test_card_number_generator(start, stop, expected):
+    assert list(card_number_generator(start,stop)) == expected
 
 
 
