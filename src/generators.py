@@ -79,11 +79,13 @@ transactions = (
 )
 def filter_by_currency(transactions, currency):
     """ Функция фильтра по заданной валюте"""
+    if currency != "USD" and currency != "RUB":
+        raise ValueError("Отсутствует необходимая валюта")
 
     return filter(lambda x: x["operationAmount"]["currency"]["code"]== currency, transactions)
 
 
-usd_transactions = filter_by_currency(transactions, "USD")
+
 
 
 

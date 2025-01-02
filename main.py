@@ -144,8 +144,8 @@ if __name__ == "__main__":
 
     usd_transactions = filter_by_currency(transactions, currency)
 
-    for i in range(3):
-        print(next(usd_transactions))
+    for transaction in usd_transactions:
+        print(transaction)
 
 if __name__ == "__main__":
     transactions = (
@@ -228,7 +228,7 @@ if __name__ == "__main__":
         ]
     )
 
-    descriptions = transaction_descriptions(transactions)
+descriptions = transaction_descriptions(transactions)
 
 for i in range(5):
     print(next(descriptions))

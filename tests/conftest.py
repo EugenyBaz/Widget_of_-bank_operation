@@ -1,7 +1,6 @@
 import pytest
 
 @pytest.fixture
-""" Фикстура для проведения тестов по generators фильтрация по валюте"""
 def filter_cur():
     return [
         {
