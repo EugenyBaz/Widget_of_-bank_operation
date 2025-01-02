@@ -297,12 +297,24 @@ def test_transaction_descriptions(transactions_discr, expected):
 
 
 
+@pytest.fixture
+def start():
+    return ""
+@pytest.fixture
+def stop():
+    return ""
 
 @pytest.mark.parametrize("start, stop, expected", [(1111, 1115,["0000 0000 0000 1111","0000 0000 0000 1112", "0000 0000 0000 1113", "0000 0000 0000 1114"])])
 
 def test_card_number_generator(start, stop, expected):
+    """ Тест для проверки корректности вывода сгенерированных карт """
     assert list(card_number_generator(start,stop)) == expected
 
+
+# def test_invalid_card_number_generator():
+#     """Тест на ввод пустой строки"""
+#     with pytest.raises(ValueError, match="cannot be empty"):
+#         card_number_generator("", "")
 
 
 

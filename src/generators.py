@@ -102,6 +102,9 @@ def transaction_descriptions(transactions):
 
 def card_number_generator(start, stop):
     """ Функция генерации номеров карт в заданном диапазоне"""
+
+
+
     for number in range(start, stop):
         num = str(number)
         mask_card = "0000000000000000"

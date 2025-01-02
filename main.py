@@ -228,15 +228,26 @@ if __name__ == "__main__":
         ]
     )
 
-descriptions = transaction_descriptions(transactions)
+    descriptions = transaction_descriptions(transactions)
 
-for i in range(5):
-    print(next(descriptions))
+    for i in range(5):
+        print(next(descriptions))
 
 if __name__ == "__main__":
 
-    start = int(input("Введите начало диапазона"))
-    stop = int(input("Введите конец диапазона"))
+    start_1 = input("Введите начало диапазона")
+    stop_1 = input("Введите конец диапазона")
+
+    if not start_1 or not stop_1:
+        raise ValueError("start and stop values cannot be empty")
+
+    # if start_1 == "" or start_1 == "None":
+    #     raise ValueError("Введите начало диапазона")
+    # elif stop_1 == "" or stop_1 == "None":
+    #     raise ValueError("Введите конец диапазона")
+
+    start = int(start_1)
+    stop = int(stop_1)
 
     for card_number in card_number_generator(start, stop):
         print(card_number)
