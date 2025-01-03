@@ -15,6 +15,7 @@ if __name__ == "__main__":
     print(get_mask_account(number_account))
 
 if __name__ == "__main__":
+    """ Приведение в нужный формат даты"""
     number_card = input("Введите номер карты или счета")
     print(mask_account_card(number_card))
 
@@ -22,6 +23,7 @@ if __name__ == "__main__":
     print(get_date(date))
 
 if __name__ == "__main__":
+    """ Фильтрация по введенному  статусу "CANCELED" или "EXECUTED" """
     state = input("Введите статус")
     state_str = state.upper()
 
@@ -38,6 +40,8 @@ if __name__ == "__main__":
     )
 
 if __name__ == "__main__":
+
+    """ Сортировка по True и False"""
 
     reverse = input("Введите порядок сортировки True(сначала новые) или False(сначала ранние)")
     reverse_up = reverse.title()
@@ -59,6 +63,9 @@ if __name__ == "__main__":
     )
 
 if __name__ == "__main__":
+
+    """ Сортировка по валюте USD или RUB"""
+
     transactions = (
         [
             {
@@ -148,6 +155,8 @@ if __name__ == "__main__":
         print(transaction)
 
 if __name__ == "__main__":
+    """ Вывод описаний транзакций по ключу "discriptions"""
+
     transactions = (
         [
             {
@@ -234,6 +243,7 @@ if __name__ == "__main__":
         print(next(descriptions))
 
 if __name__ == "__main__":
+    """ Генерация номера карты по заданному диапазону"""
 
     start_1 = input("Введите начало диапазона")
     stop_1 = input("Введите конец диапазона")

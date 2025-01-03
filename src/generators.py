@@ -59,7 +59,7 @@ def filter_by_currency(transactions: List[Dict[str, Union[str, int]]],
 
 
 def transaction_descriptions(transactions: List[Dict[str, Union[str, int]]]) -> Generator:
-    """Функция вывода транзакций"""
+    """Функция вывода названий транзакций"""
 
     transaction = (x["description"] for x in transactions)
     for x in transaction:
