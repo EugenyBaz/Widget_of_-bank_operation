@@ -140,7 +140,7 @@ if __name__ == "__main__":
     )
 
     cur = input("Введите валюту USD или RUB")
-    currency=cur.upper()
+    currency = cur.upper()
 
     usd_transactions = filter_by_currency(transactions, currency)
 
