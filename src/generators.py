@@ -54,8 +54,9 @@ def filter_by_currency(transactions: List[Dict[str, Union[str, int]]],
     """Функция фильтра по заданной валюте"""
     if currency != "USD" and currency != "RUB":
         raise ValueError("Отсутствует необходимая валюта")
-
-    return filter(lambda x: x["operationAmount"]["currency"]["code"] == currency, transactions)
+    for transaction in transactions:
+        if transaction["operationAmount"]["currency"]["code"] == currency:
+            yield transaction
 
 
 def transaction_descriptions(transactions: List[Dict[str, Union[str, int]]]) -> Generator:
@@ -69,11 +70,10 @@ def transaction_descriptions(transactions: List[Dict[str, Union[str, int]]]) -> 
 def card_number_generator(start: int, stop: int) -> Any:
     """Функция генерации номеров карт в заданном диапазоне"""
 
-    for number in range(start, stop):
-        num = str(number)
-        mask_card = "0000000000000000"
-        n = len(mask_card) - len(num)
-        while len(num) <= 16:
-            card_number = mask_card[0:n] + num
-            yield f"{card_number[0:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:16]}"
-            break
+    for number in range(start, stop+1):
+        if len(str(number)) < 16:
+            card_no_format = "0" * (16 - len(str(number))) + str(number)
+            number_card = f"{card_no_format[:4]} {card_no_format[4:8]} {card_no_format[8:12]} {card_no_format[12:]}"
+            yield number_card
+
+
