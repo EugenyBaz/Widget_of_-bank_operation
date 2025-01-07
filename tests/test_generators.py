@@ -89,7 +89,7 @@ from src.generators import card_number_generator, filter_by_currency, transactio
         )
     ],
 )
-def test_filter_by_currency_first(filter_cur: Any, currency: str, expected: Any) -> Any:
+def test_filter_by_currency_first(filter_cur: Any, currency: str, expected: Any) -> None:
     """Тест проверки на корректность работы с USD"""
     assert list(filter_by_currency(filter_cur, "USD")) == expected
 
@@ -154,15 +154,17 @@ def test_filter_by_currency_first(filter_cur: Any, currency: str, expected: Any)
         ),
     ],
 )
-def test_filter_by_currency(filter_cur: Any, currency: str, expected: Any) -> Any:
+def test_filter_by_currency(filter_cur: Any, currency: str, expected: Any) -> None:
     """Тест проверки на корректность работы с заданной валютой"""
-    assert list(filter_by_currency(filter_cur, currency)) == expected
+    assert filter_by_currency(filter_cur, currency) == expected
 
 
-def test_filter_by_invalid_currency(filter_cur: Any) -> Any:
+def test_filter_by_invalid_currency(filter_cur: Any) -> None:
     """Тест на ошибку по вводу неправильной валюты"""
+
     with pytest.raises(ValueError):
         filter_by_currency(filter_cur, "")
+
 
 
 @pytest.mark.parametrize(
@@ -243,7 +245,7 @@ def stop() -> str:
 
 @pytest.mark.parametrize(
     "start, stop, expected",
-    [(1111, 1115, ["0000 0000 0000 1111", "0000 0000 0000 1112", "0000 0000 0000 1113", "0000 0000 0000 1114"])],
+    [(1111, 1114, ["0000 0000 0000 1111", "0000 0000 0000 1112", "0000 0000 0000 1113", "0000 0000 0000 1114"])],
 )
 def test_card_number_generator(start: int, stop: int, expected: str) -> Any:
     """Тест для проверки корректности вывода сгенерированных карт"""
@@ -252,5 +254,5 @@ def test_card_number_generator(start: int, stop: int, expected: str) -> Any:
 
 # def test_invalid_card_number_generator():
 #     """Тест на ввод пустой строки"""
-#     with pytest.raises(ValueError, match="cannot be empty"):
-#         card_number_generator("", "")
+#     with pytest.raises(ValueError):
+#         card_number_generator(None, None)
