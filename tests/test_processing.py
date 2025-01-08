@@ -1,10 +1,12 @@
-import pytest
-from src.processing import filter_by_state, sort_by_date
 from typing import Dict, List, Union
+
+import pytest
+
+from src.processing import filter_by_state, sort_by_date
 
 
 @pytest.fixture
-def filter_dict(filter: List[Dict[str, Union[str, int]]]) -> List[Dict[str, Union[str, int]]]:
+def filter_dict() -> List[Dict[str, Union[str, int]]]:
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
@@ -84,7 +86,7 @@ def test_filter_by_state_default(
 
 
 @pytest.fixture
-def sort_dict(filter: List[Dict[str, Union[str, int]]]) -> List[Dict[str, Union[str, int]]]:
+def sort_dict() -> List[Dict[str, Union[str, int]]]:
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},

@@ -1,10 +1,12 @@
-import pytest
-from src.masks import get_mask_card_number, get_mask_account
 from typing import List
+
+import pytest
+
+from src.masks import get_mask_account, get_mask_card_number
 
 
 @pytest.fixture
-def number_card(number: str) -> List[str]:
+def number_card() -> List[str]:
 
     return ["1111222233334444", "6666222233339999"]
 
@@ -25,7 +27,7 @@ def test_get_mask_invalid_card_number(number_card: str) -> None:
 
 
 @pytest.fixture
-def number_account(numbet: str) -> List[str]:
+def number_account() -> List[str]:
     return ["12345678900987654321", "89706059432112345678"]
 
 

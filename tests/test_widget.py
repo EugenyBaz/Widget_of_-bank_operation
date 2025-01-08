@@ -1,10 +1,12 @@
-import pytest
-from src.widget import mask_account_card, get_date
 from typing import List
+
+import pytest
+
+from src.widget import get_date, mask_account_card
 
 
 @pytest.fixture
-def number_card(number: str) -> List[str]:
+def number_card() -> List[str]:
     return ["Mastercard 1111222233334444", "Счет 89706059432112345678"]
 
 
@@ -24,7 +26,7 @@ def test_mask_invalid_account_card(number_card: str) -> None:
 
 
 @pytest.fixture
-def date(date: str) -> List[str]:
+def date() -> List[str]:
     return ["2024-03-11T02:26:18.671407", "2024-12-31"]
 
 
