@@ -17,7 +17,7 @@ def test_log() -> None:
 
 @freeze_time("2025-01-07 13:32:32.672206")
 def test_print_log(capsys: CaptureFixture) -> None:
-    """Тестирование вывода в консоль при отсутсnвии файла filename"""
+    """Тестирование вывода в консоль при отсутствии файла filename"""
 
     @log()
     def my_function(x: int, y: int) -> int:
@@ -32,8 +32,8 @@ def test_print_log(capsys: CaptureFixture) -> None:
 
 @freeze_time("2025-01-07 13:32:32.672206")
 def test_print_log_str(capsys: CaptureFixture) -> None:
-    """Тестирование вывода в консоль при отсутсnвии файла filename
-    и ошибки в передачи пустой строки вместо рагументов"""
+    """Тестирование вывода в консоль при отсутствии файла filename
+    и ошибки - передача пустой строки вместо аргументов"""
 
     @log()
     def my_function(x: int, y: int) -> int:
