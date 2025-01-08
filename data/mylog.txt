@@ -131,3 +131,4 @@ my_function ok start: 2025-01-08 11:46:54.988312 and end:2025-01-08 11:46:54.988
 my_function ok start: 2025-01-08 11:49:11.191525 and end:2025-01-08 11:49:11.191526 result:3
 my_function ok start: 2025-01-08 11:49:32.683604 and end:2025-01-08 11:49:32.683607 result:3
 my_function ok start: 2025-01-08 11:49:58.545175 and end:2025-01-08 11:49:58.545176 result:3
+my_function ok start: 2025-01-08 11:56:15.892783 and end:2025-01-08 11:56:15.892803 result:3
