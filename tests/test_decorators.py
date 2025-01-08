@@ -1,24 +1,25 @@
 import pytest
 from freezegun import freeze_time
 from src.decorators import log
+from _pytest.capture import CaptureFixture
 
 
 
 
-def test_log():
+def test_log()-> None:
     """ Тестирование работы функции через декоратор"""
     @log()
-    def my_function(x, y):
+    def my_function(x:int, y:int) -> int:
         return x + y
     result = my_function(1, 2)
 
     assert result == 3
 
 @freeze_time("2025-01-07 13:32:32.672206")
-def test_print_log(capsys):
+def test_print_log(capsys: CaptureFixture) -> None:
     """  Тестирование вывода в консоль при отсутсnвии файла filename"""
     @log()
-    def my_function(x,y):
+    def my_function(x:int,y:int) -> int:
         return x + y
     my_function(1, 2)
     captured = capsys.readouterr()
@@ -27,11 +28,11 @@ def test_print_log(capsys):
 
 
 @freeze_time("2025-01-07 13:32:32.672206")
-def test_print_log_str(capsys):
+def test_print_log_str(capsys: CaptureFixture) -> None:
     """  Тестирование вывода в консоль при отсутсnвии файла filename
       и ошибки в передачи пустой строки вместо рагументов"""
     @log()
-    def my_function(x,y):
+    def my_function(x:int,y:int)->int:
         return x + y
     my_function("", 2)
     captured = capsys.readouterr().out.strip()

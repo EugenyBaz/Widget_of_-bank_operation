@@ -1,12 +1,15 @@
 import datetime
 import os
+from typing import Callable, Optional,Any
+
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 NEW_BASE_DIR = os.path.dirname(BASE_DIR)
-def log(filename=None):
+def log(filename: Optional[str]=None) -> Callable:
     """Декоратор с принимаемыми аргументами"""
-    def decorator(func):
+    def decorator(func:Callable) -> Callable:
 
-        def wrapper(*args, **kwargs):
+        def wrapper(*args:Any, **kwargs:Any) -> Any:
             start_time = datetime.datetime.now()
             """ Начало работы функции"""
             result = None
@@ -38,7 +41,7 @@ def log(filename=None):
 
 
 @log(filename="mylog.txt")
-def my_function(x, y):
+def my_function(x:int, y:int) -> int:
     """Декорируемая функция"""
     return x + y
 

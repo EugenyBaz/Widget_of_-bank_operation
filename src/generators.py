@@ -49,13 +49,13 @@ transactions = [
 ]
 
 
-def filter_by_currency(transactions: List[Dict[str, Union[str, int]]],
-                       currency: str) -> Any:
+def filter_by_currency(transactions: List[Dict[str, Any]],
+                       currency: str) -> List[Dict[str, Any]]:
     """Функция фильтра по заданной валюте"""
     if not currency or currency not in ["USD", "RUB"]:
         raise ValueError("Отсутствует необходимая валюта")
 
-    filtered_transactions = []
+    filtered_transactions: List[Dict[str, Any]] = []
     for transaction in transactions:
         if transaction["operationAmount"]["currency"]["code"] == currency:
             filtered_transactions.append(transaction)
