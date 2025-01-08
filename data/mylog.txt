@@ -113,3 +113,17 @@ my_function error: -type can only concatenate str (not "int") to str- Inputs: (1
     start: 2025-01-07 15:16:21.788029 and end:2025-01-07 15:16:21.788035 result:None
 my_function error: -type can only concatenate str (not "int") to str- Inputs: (1, 2), {}
     start: 2025-01-07 15:16:32.473619 and end:2025-01-07 15:16:32.473635 result:None
+my_function ok start: 2025-01-08 09:36:09.692067 and end:2025-01-08 09:36:09.692081 result:3
+my_function ok start: 2025-01-08 09:36:09.707879 and end:2025-01-08 09:36:09.707882 result:3
+my_function ok start: 2025-01-08 09:37:49.905372 and end:2025-01-08 09:37:49.905374 result:3
+my_function ok start: 2025-01-08 09:38:01.356017 and end:2025-01-08 09:38:01.356019 result:3
+my_function ok start: 2025-01-08 09:38:08.364244 and end:2025-01-08 09:38:08.364246 result:3
+my_function ok start: 2025-01-08 09:38:29.178609 and end:2025-01-08 09:38:29.178611 result:3
+my_function ok start: 2025-01-08 09:38:44.930099 and end:2025-01-08 09:38:44.930102 result:3
+my_function ok start: 2025-01-08 09:39:43.442735 and end:2025-01-08 09:39:43.442737 result:3
+my_function ok start: 2025-01-08 09:40:30.776529 and end:2025-01-08 09:40:30.776530 result:3
+my_function ok start: 2025-01-08 09:40:40.030902 and end:2025-01-08 09:40:40.030904 result:3
+my_function ok start: 2025-01-08 09:40:55.313861 and end:2025-01-08 09:40:55.313863 result:3
+my_function ok start: 2025-01-08 09:43:21.628327 and end:2025-01-08 09:43:21.628329 result:3
+my_function ok start: 2025-01-08 09:43:42.379004 and end:2025-01-08 09:43:42.379006 result:3
+my_function ok start: 2025-01-08 09:43:55.030840 and end:2025-01-08 09:43:55.030844 result:3

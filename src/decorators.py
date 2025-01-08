@@ -3,13 +3,15 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 NEW_BASE_DIR = os.path.dirname(BASE_DIR)
 def log(filename=None):
-
+    """Декоратор с принимаемыми аргументами"""
     def decorator(func):
 
         def wrapper(*args, **kwargs):
             start_time = datetime.datetime.now()
+            """ Начало работы функции"""
             result = None
             try:
+                """ Прописываем через try и except выполнение функции с выводом результата в т.ч. ошибок"""
                 result= func(*args, **kwargs)
                 end_time = datetime.datetime.now()
                 if filename:
@@ -35,8 +37,9 @@ def log(filename=None):
 
 
 
-@log()
+@log(filename="mylog.txt")
 def my_function(x, y):
+    """Декорируемая функция"""
     return x + y
 
-my_function("",2)
+my_function(1,2)

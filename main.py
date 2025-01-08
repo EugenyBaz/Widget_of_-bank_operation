@@ -2,6 +2,7 @@
 # from src.widget import mask_account_card, get_date
 # from src.processing import filter_by_state, sort_by_date
 from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from src.decorators import my_function
 #
 # # if __name__ == "__main__":
 #     number_card = input("Введите номер карты")
@@ -242,26 +243,26 @@ from src.generators import filter_by_currency, transaction_descriptions, card_nu
 #     for i in range(5):
 #         print(next(descriptions))
 #
+# if __name__ == "__main__":
+#     """ Генерация номера карты по заданному диапазону"""
+#
+#     while True:
+#         start_1 = input("Введите начало диапазона")
+#         stop_1 = input("Введите конец диапазона")
+#
+#         try:
+#             start = int(start_1)
+#             stop = int(stop_1)
+#
+#             break
+#
+#         except ValueError:
+#             print("Введённые значения должны быть целыми числами. Попробуйте снова.")
+#
+#     for card_number in card_number_generator(start, stop):
+#         print(card_number)
+
 if __name__ == "__main__":
-    """ Генерация номера карты по заданному диапазону"""
-
-    while True:
-        start_1 = input("Введите начало диапазона")
-        stop_1 = input("Введите конец диапазона")
-
-        try:
-            start = int(start_1)
-            stop = int(stop_1)
-
-            break
-
-        except ValueError:
-            print("Введённые значения должны быть целыми числами. Попробуйте снова.")
-
-    # if start_1 == "" or start_1 == "None":
-    #     raise ValueError("Введите начало диапазона")
-    # elif stop_1 == "" or stop_1 == "None":
-    #     raise ValueError("Введите конец диапазона")
-
-    for card_number in card_number_generator(start, stop):
-        print(card_number)
+    """Функция с декораторами записи логов со временем начала и конца, так же
+    с выводом ошибок в консоль, либо в mylog.txt"""
+    my_function(1,2)
