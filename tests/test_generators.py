@@ -166,7 +166,6 @@ def test_filter_by_invalid_currency(filter_cur: Any) -> None:
         filter_by_currency(filter_cur, "")
 
 
-
 @pytest.mark.parametrize(
     "transactions_discr, expected",
     [

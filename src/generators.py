@@ -49,8 +49,7 @@ transactions = [
 ]
 
 
-def filter_by_currency(transactions: List[Dict[str, Any]],
-                       currency: str) -> List[Dict[str, Any]]:
+def filter_by_currency(transactions: List[Dict[str, Any]], currency: str) -> List[Dict[str, Any]]:
     """Функция фильтра по заданной валюте"""
     if not currency or currency not in ["USD", "RUB"]:
         raise ValueError("Отсутствует необходимая валюта")
@@ -61,7 +60,6 @@ def filter_by_currency(transactions: List[Dict[str, Any]],
             filtered_transactions.append(transaction)
 
     return filtered_transactions
-
 
 
 def transaction_descriptions(transactions: List[Dict[str, Union[str, int]]]) -> Generator:
@@ -75,13 +73,11 @@ def transaction_descriptions(transactions: List[Dict[str, Union[str, int]]]) -> 
 def card_number_generator(start: int, stop: int) -> Any:
     """Функция генерации номеров карт в заданном диапазоне"""
 
-    if not start or not stop :
-          raise ValueError("Введите числовые значения")
+    if not start or not stop:
+        raise ValueError("Введите числовые значения")
 
-    for number in range(start, stop+1):
+    for number in range(start, stop + 1):
         if len(str(number)) < 16:
             card_no_format = "0" * (16 - len(str(number))) + str(number)
             number_card = f"{card_no_format[:4]} {card_no_format[4:8]} {card_no_format[8:12]} {card_no_format[12:]}"
             yield number_card
-
-
