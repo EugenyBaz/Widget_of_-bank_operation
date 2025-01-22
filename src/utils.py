@@ -2,8 +2,9 @@ import json
 from src.external_second_api import convert_currency
 
 def read_file_trans(list_tr):
+    operations_list = []
 
-   try :
+    try :
 
         with open(list_tr, 'r' , encoding='utf-8') as file:
             operations_list = json.load(file)
@@ -11,14 +12,14 @@ def read_file_trans(list_tr):
         if not isinstance(operations_list, list):
             raise TypeError("Файл содержит не список")
 
-   except FileNotFoundError:
-       print([])
-   except TypeError:
-       print([])
-   except json.JSONDecodeError:
-       print([])
+    except FileNotFoundError:
+        print([])
+    except TypeError:
+        print([])
+    except json.JSONDecodeError:
+        print([])
 
-   return operations_list
+    return operations_list
 
 list_trans = read_file_trans('../data/operations.json')
 
