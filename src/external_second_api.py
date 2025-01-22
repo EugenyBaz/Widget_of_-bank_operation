@@ -1,11 +1,12 @@
 import os
 import requests
 from dotenv import load_dotenv
-import json
+
 
 load_dotenv()
 
-API_KEY = os.getenv('API_KEY')
+API_KEY = os.getenv("API_KEY")
+
 
 def convert_currency(currency):
     cur_in = currency
@@ -15,14 +16,10 @@ def convert_currency(currency):
     response = requests.get(url)
     result = response.json()
 
-    tot_res = round(result['conversion_rates']["RUB"],4)
+    tot_res = round(result["conversion_rates"]["RUB"], 4)
 
     return tot_res
+
+
 print(convert_currency("USD"))
 print(type(convert_currency("USD")))
-
-
-
-
-
-

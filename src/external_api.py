@@ -19,4 +19,3 @@ result_py = json.loads(result)
 # tot_res = result_py['result']
 
 print(result_py)
-
