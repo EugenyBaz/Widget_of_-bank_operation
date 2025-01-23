@@ -1,6 +1,7 @@
 import os
 import requests
 from dotenv import load_dotenv
+from typing import Any
 
 
 load_dotenv()
@@ -8,7 +9,7 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 
-def convert_currency(currency):
+def convert_currency(currency: str) -> Any:
     cur_in = currency
 
     url = f"https://v6.exchangerate-api.com/v6/{API_KEY}/latest/{cur_in}"
