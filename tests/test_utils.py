@@ -5,7 +5,7 @@ from src.utils import read_file_trans, convert_transaction
 from typing import Dict, List, Any
 
 
-def test_read_file_success(list_tr: List[Dict[str,Any]])-> None:
+def test_read_file_success(list_tr: str)-> None:
     with patch(
         "builtins.open", mock_open(read_data=json.dumps([{"operation": "deposit", "amount": 100}]))
     ) as mock_file:
@@ -14,13 +14,13 @@ def test_read_file_success(list_tr: List[Dict[str,Any]])-> None:
         assert result == [{"operation": "deposit", "amount": 100}]
 
 
-def test_file_not_found_error(list_tr: List[Dict[str,Any]])-> None:
+def test_file_not_found_error(list_tr: str)-> None:
     with patch("builtins.open", side_effect=FileNotFoundError):
         result = read_file_trans(list_tr)
         assert result == []
 
 
-def test_type_error(list_tr: List[Dict[str,Any]])-> None:
+def test_type_error(list_tr: str)-> None:
     with patch("builtins.open", mock_open(read_data="not a valid json")):
         result = read_file_trans(list_tr)
         assert result == []

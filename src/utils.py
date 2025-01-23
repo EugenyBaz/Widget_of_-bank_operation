@@ -1,9 +1,10 @@
 import json
 from src.external_second_api import convert_currency
+from typing import List, Dict, Any
 
 
-def read_file_trans(list_tr):
-    operations_list = []
+def read_file_trans(list_tr: str)-> List[Dict[str,Any]]:
+    operations_list: List[Dict[str, Any]] = []
 
     try:
 
@@ -28,7 +29,7 @@ list_trans = read_file_trans("../data/operations.json")
 print(list_trans)
 
 
-def convert_transaction(list_trans):
+def convert_transaction(list_trans: List[Dict[str,Any]]) -> Any:
     list_RUB = []
     list_USD = []
     list_EUR = []
@@ -48,7 +49,7 @@ def convert_transaction(list_trans):
     sum_rub = sum(list_RUB)
     sum_usd = sum(list_USD) * convert_currency("USD")
     sum_eur = sum(list_EUR) * convert_currency("EUR")
-    total_usd = round((sum_rub + sum_usd + sum_eur), 2)
+    total_usd = round(sum_rub + sum_usd + sum_eur, 2)
 
     return total_usd
 

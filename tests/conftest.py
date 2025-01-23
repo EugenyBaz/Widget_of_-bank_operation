@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List, Dict
 
 import pytest
 
@@ -106,12 +106,12 @@ def transactions_discr() -> Any:
 
 
 @pytest.fixture
-def list_tr():
+def list_tr()->str:
     return "../data/operations.json"
 
 
 @pytest.fixture
-def short_list():
+def short_list()-> List[Dict[str,Any]]:
     return [
         {
             "id": 441945886,
