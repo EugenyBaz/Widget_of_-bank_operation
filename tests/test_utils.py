@@ -6,6 +6,7 @@ from typing import Dict, List, Any
 
 
 def test_read_file_success(list_tr: str)-> None:
+    """Функция проверки корректности чтения файла json"""
     with patch(
         "builtins.open", mock_open(read_data=json.dumps([{"operation": "deposit", "amount": 100}]))
     ) as mock_file:
@@ -15,12 +16,14 @@ def test_read_file_success(list_tr: str)-> None:
 
 
 def test_file_not_found_error(list_tr: str)-> None:
+    """ Проверка вывода пустого списка по ошибке FileNotFoundError"""
     with patch("builtins.open", side_effect=FileNotFoundError):
         result = read_file_trans(list_tr)
         assert result == []
 
 
 def test_type_error(list_tr: str)-> None:
+    """ Проверка вывода пустого списка если файл не json"""
     with patch("builtins.open", mock_open(read_data="not a valid json")):
         result = read_file_trans(list_tr)
         assert result == []
@@ -55,4 +58,5 @@ def test_type_error(list_tr: str)-> None:
     ],
 )
 def test_convert_transaction(short_list: List[Dict[str,Any]], expected: str)-> None:
+    """ Проверка корректности вывода суммы транзакций"""
     assert convert_transaction(short_list) == expected

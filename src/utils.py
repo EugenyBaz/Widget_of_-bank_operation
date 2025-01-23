@@ -4,6 +4,7 @@ from typing import List, Dict, Any
 
 
 def read_file_trans(list_tr: str)-> List[Dict[str,Any]]:
+    """ Функция конвертации файла json в список python"""
     operations_list: List[Dict[str, Any]] = []
 
     try:
@@ -30,6 +31,7 @@ print(list_trans)
 
 
 def convert_transaction(list_trans: List[Dict[str,Any]]) -> Any:
+    """ Функция вывода суммы транзакций"""
     list_RUB = []
     list_USD = []
     list_EUR = []

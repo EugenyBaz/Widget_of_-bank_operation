@@ -10,6 +10,7 @@ API_KEY = os.getenv("API_KEY")
 
 
 def convert_currency(currency: str) -> Any:
+    """ Функция конвертации валюты и вывода текущего курса """
     cur_in = currency
 
     url = f"https://v6.exchangerate-api.com/v6/{API_KEY}/latest/{cur_in}"
