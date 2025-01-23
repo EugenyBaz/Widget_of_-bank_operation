@@ -1,7 +1,6 @@
 import datetime
 import os
-from typing import Callable, Optional, Any
-
+from typing import Any, Callable, Optional
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 NEW_BASE_DIR = os.path.dirname(BASE_DIR)

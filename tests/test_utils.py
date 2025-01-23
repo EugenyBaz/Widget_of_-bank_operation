@@ -1,11 +1,13 @@
-import pytest
-from unittest.mock import patch, mock_open
 import json
-from src.utils import read_file_trans, convert_transaction
-from typing import Dict, List, Any
+from typing import Any, Dict, List
+from unittest.mock import mock_open, patch
+
+import pytest
+
+from src.utils import convert_transaction, read_file_trans
 
 
-def test_read_file_success(list_tr: str)-> None:
+def test_read_file_success(list_tr: str) -> None:
     """Функция проверки корректности чтения файла json"""
     with patch(
         "builtins.open", mock_open(read_data=json.dumps([{"operation": "deposit", "amount": 100}]))
@@ -15,15 +17,15 @@ def test_read_file_success(list_tr: str)-> None:
         assert result == [{"operation": "deposit", "amount": 100}]
 
 
-def test_file_not_found_error(list_tr: str)-> None:
-    """ Проверка вывода пустого списка по ошибке FileNotFoundError"""
+def test_file_not_found_error(list_tr: str) -> None:
+    """Проверка вывода пустого списка по ошибке FileNotFoundError"""
     with patch("builtins.open", side_effect=FileNotFoundError):
         result = read_file_trans(list_tr)
         assert result == []
 
 
-def test_type_error(list_tr: str)-> None:
-    """ Проверка вывода пустого списка если файл не json"""
+def test_type_error(list_tr: str) -> None:
+    """Проверка вывода пустого списка если файл не json"""
     with patch("builtins.open", mock_open(read_data="not a valid json")):
         result = read_file_trans(list_tr)
         assert result == []
@@ -57,6 +59,6 @@ def test_type_error(list_tr: str)-> None:
         )
     ],
 )
-def test_convert_transaction(short_list: List[Dict[str,Any]], expected: str)-> None:
-    """ Проверка корректности вывода суммы транзакций"""
+def test_convert_transaction(short_list: List[Dict[str, Any]], expected: str) -> None:
+    """Проверка корректности вывода суммы транзакций"""
     assert convert_transaction(short_list) == expected

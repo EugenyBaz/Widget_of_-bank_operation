@@ -1,10 +1,11 @@
 import json
+from typing import Any, Dict, List
+
 from src.external_second_api import convert_currency
-from typing import List, Dict, Any
 
 
-def read_file_trans(list_tr: str)-> List[Dict[str,Any]]:
-    """ Функция конвертации файла json в список python"""
+def read_file_trans(list_tr: str) -> List[Dict[str, Any]]:
+    """Функция конвертации файла json в список python"""
     operations_list: List[Dict[str, Any]] = []
 
     try:
@@ -30,8 +31,8 @@ list_trans = read_file_trans("../data/operations.json")
 print(list_trans)
 
 
-def convert_transaction(list_trans: List[Dict[str,Any]]) -> Any:
-    """ Функция вывода суммы транзакций"""
+def convert_transaction(list_trans: List[Dict[str, Any]]) -> Any:
+    """Функция вывода суммы транзакций"""
     list_RUB = []
     list_USD = []
     list_EUR = []
