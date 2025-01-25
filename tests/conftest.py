@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict, List
 
 import pytest
 
@@ -101,5 +101,34 @@ def transactions_discr() -> Any:
             "description": "Перевод организации",
             "from": "Visa Platinum 1246377376343588",
             "to": "Счет 14211924144426031657",
+        },
+    ]
+
+
+@pytest.fixture
+def list_tr() -> str:
+    return "../data/operations.json"
+
+
+@pytest.fixture
+def short_list() -> List[Dict[str, Any]]:
+    return [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+            "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 1596837868705199",
+            "to": "Счет 64686473678894779589",
+        },
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
         },
     ]

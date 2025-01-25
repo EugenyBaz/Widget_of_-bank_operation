@@ -1,6 +1,7 @@
-from freezegun import freeze_time
-from src.decorators import log
 from _pytest.capture import CaptureFixture
+from freezegun import freeze_time
+
+from src.decorators import log
 
 
 def test_log() -> None:
