@@ -15,7 +15,7 @@ logger.addHandler(file_handler)
 
 def read_file_trans(list_tr: str) -> List[Dict[str, Any]]:
     """Функция конвертации файла json в список python"""
-    logger.info(f"Запуск функции конвертации файла json в список python")
+    logger.info("Запуск функции конвертации файла json в список python")
     operations_list: List[Dict[str, Any]] = []
 
     try:
@@ -24,17 +24,17 @@ def read_file_trans(list_tr: str) -> List[Dict[str, Any]]:
             operations_list = json.load(file)
 
         if not isinstance(operations_list, list):
-            logger.warning(f"Ошибка- файл содержит не список")
+            logger.warning("Ошибка- файл содержит не список")
             raise TypeError("Файл содержит не список")
 
     except FileNotFoundError:
-        logger.warning(f"Ошибка- файл не найден FileNotFoundError ")
+        logger.warning("Ошибка- файл не найден FileNotFoundError ")
         print([])
     except TypeError:
-        logger.warning(f"Ошибка- TypeError ")
+        logger.warning("Ошибка- TypeError ")
         print([])
     except json.JSONDecodeError:
-        logger.warning(f"Ошибка- JSONDecodeError")
+        logger.warning("Ошибка- JSONDecodeError")
         print([])
 
     return operations_list
@@ -43,12 +43,12 @@ def read_file_trans(list_tr: str) -> List[Dict[str, Any]]:
 list_trans = read_file_trans("../data/operations.json")
 
 print(list_trans)
-logger.info(f"Вывод на печать в консоль результата функции конвертации ")
+logger.info("Вывод на печать в консоль результата функции конвертации ")
 
 
 def convert_transaction(list_trans: List[Dict[str, Any]]) -> Any:
     """Функция вывода суммы транзакций"""
-    logger.info(f"Запуск функции подсчета суммы транзакции")
+    logger.info("Запуск функции подсчета суммы транзакции")
     list_RUB = []
     list_USD = []
     list_EUR = []
@@ -76,4 +76,4 @@ def convert_transaction(list_trans: List[Dict[str, Any]]) -> Any:
 conv_trans = convert_transaction(list_trans)
 
 print(conv_trans)
-logger.info(f"Вывод подсчета суммы транзакции в консоль")
+logger.info("Вывод подсчета суммы транзакции в консоль")
