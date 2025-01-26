@@ -2,10 +2,17 @@ from src.external_second_api import convert_currency
 import json
 from typing import Any, Dict, List
 import logging
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, ".."))
+data_file_path = os.path.join(project_root, "logs", "utils.log")
+
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("../logs/utils.log")
+# file_handler = logging.FileHandler("../logs/utils.log")
+file_handler = logging.FileHandler(data_file_path)
 file_formatter = logging.Formatter(
     "%(levelname)s: %(name)s: Request time: %(asctime)s: %(message)s", "%Y-%m-%d %H:%M:%S"
 )

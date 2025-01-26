@@ -4,6 +4,7 @@ from src.processing import filter_by_state, sort_by_date
 from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 from src.decorators import my_function
 
+
 if __name__ == "__main__":
     number_card = input("Введите номер карты")
     """Вывод номера карты в скрытом виде"""
@@ -266,3 +267,8 @@ if __name__ == "__main__":
     """Функция с декораторами записи логов со временем начала и конца, так же
     с выводом ошибок в консоль, либо в mylog.txt"""
     my_function(1, 2)
+
+
+
+
+
