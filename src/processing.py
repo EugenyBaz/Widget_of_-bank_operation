@@ -8,9 +8,10 @@ def filter_by_state(
     new_list = []
 
     for i in list_dict:
-        if i["state"] == state_str:
+        if 'state' in i and  i["state"] == state_str:
             new_list.append(i)
     return new_list
+
 
 
 def sort_by_date(
@@ -18,7 +19,7 @@ def sort_by_date(
 ) -> List[Dict[str, Union[str, int]]]:
     """Функция сортировки по дате по убыванию"""
     for i in list_dict:
-        if i["date"] == "":
+        if "date" not in i or i["date"] == "":
             raise ValueError("Отсутствует дата")
 
     sorted_list = sorted(list_dict, key=lambda x: x["date"], reverse=reverse_str)

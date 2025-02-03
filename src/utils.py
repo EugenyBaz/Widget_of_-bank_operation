@@ -48,12 +48,6 @@ def read_file_trans(list_tr: str) -> List[Dict[str, Any]]:
     return operations_list
 
 
-list_trans = read_file_trans("../data/operations.json")
-
-print(list_trans)
-logger.info("Вывод на печать в консоль результата функции конвертации ")
-
-
 def convert_transaction(list_trans: List[Dict[str, Any]]) -> Any:
     """Функция вывода суммы транзакций"""
     logger.info("Запуск функции подсчета суммы транзакции")
@@ -81,7 +75,13 @@ def convert_transaction(list_trans: List[Dict[str, Any]]) -> Any:
     return total_usd
 
 
-conv_trans = convert_transaction(list_trans)
 
-print(conv_trans)
-logger.info("Вывод подсчета суммы транзакции в консоль")
+if __name__ == "__main__":
+    list_trans = read_file_trans("../data/operations.json")
+    conv_trans = convert_transaction(list_trans)
+
+    print(list_trans)
+    logger.info("Вывод на печать в консоль результата функции конвертации ")
+
+    print(conv_trans)
+    logger.info("Вывод подсчета суммы транзакции в консоль")

@@ -23,5 +23,5 @@ def convert_currency(currency: str) -> Any:
     return tot_res
 
 
-print(convert_currency("USD"))
-print(type(convert_currency("USD")))
+# print(convert_currency("USD"))
+# print(type(convert_currency("USD")))
