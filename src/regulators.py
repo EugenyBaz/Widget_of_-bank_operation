@@ -2,7 +2,7 @@ from src.utils import read_file_trans
 import re
 from collections import Counter
 
-def  search_trans(transactions, search):
+def search_trans(transactions, search):
     """ Функция выборки транзакций по названию """
     results = []
     pattern = re.compile(search, flags=re.IGNORECASE)
@@ -10,20 +10,6 @@ def  search_trans(transactions, search):
         if "description" in trans and pattern.search(trans["description"]):
             results.append(trans)
     return results
-
-
-# transactions =  read_file_trans("../data/operations.json")
-#
-# search = input ("Введите название транзакции ")
-#
-# results = search_trans(transactions,search)
-#
-# if results:
-#     for result in results:
-#         print(result)
-# else:
-#     print("Транзакция не найдена")
-
 
 
 def list_of_trans_user(transactions, categories):
@@ -39,7 +25,7 @@ def list_of_trans_user(transactions, categories):
 
     counted = Counter(result)
 
-    return counted
+    return dict(counted)
 
 transactions =  read_file_trans("../data/operations.json")
 

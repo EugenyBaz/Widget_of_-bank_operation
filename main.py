@@ -116,15 +116,16 @@ elif user_input_trans == "нет":
 print (""" ↓↓↓ РАСПЕЧАТЫВАЮ ИТОГОВЫЙ СПИСОК ТРАНЗАКЦИЙ ↓↓↓ """)
 """ 7. Итоговый вывод отчета  """
 
+
 for t in user_trans:
     if t['description'] == 'Открытие вклада':
-        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}")
+        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
     elif t['description'] == 'Перевод с карты на карту':
-        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}")
+        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
     elif t['description'] == 'Перевод организации':
-        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}")
+        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
     elif t['description'] == 'Перевод со счета на счет':
-        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}")
+        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
 
 
 
