@@ -2,7 +2,7 @@ from src.utils import read_file_trans
 import re
 from collections import Counter
 
-def  search_list(transactions, search):
+def  search_trans(transactions, search):
     """ Функция выборки транзакций по названию """
     results = []
     pattern = re.compile(search, flags=re.IGNORECASE)
@@ -12,17 +12,17 @@ def  search_list(transactions, search):
     return results
 
 
-transactions =  read_file_trans("../data/operations.json")
-
-search = input ("Введите название строки")
-
-results = search_list(transactions,search)
-
-if results:
-    for result in results:
-        print(result)
-else:
-    print("Строка не найдена")
+# transactions =  read_file_trans("../data/operations.json")
+#
+# search = input ("Введите название транзакции ")
+#
+# results = search_trans(transactions,search)
+#
+# if results:
+#     for result in results:
+#         print(result)
+# else:
+#     print("Транзакция не найдена")
 
 
 
