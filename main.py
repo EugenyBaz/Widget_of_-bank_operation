@@ -14,8 +14,8 @@ data_file_path = os.path.join(project_root, "data", "transactions.csv")
 data_file_path_exl = os.path.join(project_root, "data", "transactions_excel.xlsx")
 data_file_path_json = os.path.join(project_root, "data", "operations.json")
 
-print("""Программа: Привет! Добро пожаловать в программу работы 
-с банковскими транзакциями.""")
+print("""Привет! Добро пожаловать в программу работы с банковскими транзакциями.""")
+""" 1.Приветствие """
 
 user_input = input(
 """Выберите необходимый пункт меню:
@@ -23,6 +23,7 @@ user_input = input(
 2. Получить информацию о транзакциях из CSV-файла
 3. Получить информацию о транзакциях из XLSX-файла
 """)
+""" 2. Выбор файлов """
 
 if user_input == "1":
     print ("""Для обработки выбран JSON-файл """)
@@ -33,8 +34,11 @@ if user_input == "2":
 if user_input == "3":
     print("""Для обработки выбран XLSX-файл """)
 
+
 state = input("""Введите статус, по которому необходимо выполнить фильтрацию. 
 Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING""")
+""" 3. Выбор статусов """
+
 state_str= state.upper()
 
 if user_input == "1":
@@ -52,8 +56,10 @@ elif user_input == "3":
     file_json = read_transactions_exl(data_file_path_exl)
     result_user = filter_by_state(file_json, state_str)
     print(result_user)
+
 user_input_sort = input("""Отсортировать операции по дате? Да/Нет
 """).lower()
+""" 4. Сортировка по дате  """
 
 if user_input_sort == "да":
 
@@ -76,6 +82,7 @@ elif user_input_sort == "нет":
 
 user_input_currency = input("""Выводить только рублевые транзакции? Да/Нет
 """).lower()
+""" 5. Фильтр по валюте  """
 
 if user_input_currency == "да":
     currency = "RUB"
@@ -92,6 +99,7 @@ else:
 
 user_input_trans = input("""Отфильтровать список транзакций по определенному слову 
 в описании? Да/Нет""").lower()
+""" 6. Фильтр по слову в названии транзакции  """
 
 if user_input_trans == "да":
     search = input("Введите название транзакции ")
@@ -106,6 +114,7 @@ elif user_input_trans == "нет":
     print(user_trans)
 
 print (""" ↓↓↓ РАСПЕЧАТЫВАЮ ИТОГОВЫЙ СПИСОК ТРАНЗАКЦИЙ ↓↓↓ """)
+""" 7. Итоговый вывод отчета  """
 
 for t in user_trans:
     if t['description'] == 'Открытие вклада':
