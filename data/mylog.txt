@@ -282,3 +282,4 @@ my_function ok start: 2025-02-03 19:13:28.516163 and end:2025-02-03 19:13:28.516
 my_function ok start: 2025-02-03 19:31:25.314517 and end:2025-02-03 19:31:25.314530 result:3
 my_function ok start: 2025-02-03 19:36:30.623685 and end:2025-02-03 19:36:30.623697 result:3
 my_function ok start: 2025-02-03 19:36:59.996986 and end:2025-02-03 19:36:59.996992 result:3
+my_function ok start: 2025-02-03 19:40:00.429854 and end:2025-02-03 19:40:00.429859 result:3
