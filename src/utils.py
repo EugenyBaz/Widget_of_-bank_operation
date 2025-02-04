@@ -12,7 +12,6 @@ data_file_path = os.path.join(project_root, "logs", "utils.log")
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
-# file_handler = logging.FileHandler("../logs/utils.log")
 file_handler = logging.FileHandler(data_file_path)
 file_formatter = logging.Formatter(
     "%(levelname)s: %(name)s: Request time: %(asctime)s: %(message)s", "%Y-%m-%d %H:%M:%S"
@@ -73,7 +72,6 @@ def convert_transaction(list_trans: List[Dict[str, Any]]) -> Any:
     total_usd = round(sum_rub + sum_usd + sum_eur, 2)
 
     return total_usd
-
 
 
 if __name__ == "__main__":

@@ -12,9 +12,11 @@ data_file_path_exl = os.path.join(project_root, "data", "transactions_excel.xlsx
 
 def read_transactions_csv(file_path: Any = data_file_path) -> str:
     """ Функция получения, чтения файла cvs, преобразование в список словарей транзакций"""
+
     with open(file_path, 'r', newline='', encoding='utf-8') as file:
         reader = csv.DictReader(file,delimiter=";")
-        return list(reader)
+        transactions = list(reader)
+        return transactions
 
 
 if __name__ == "__main__":

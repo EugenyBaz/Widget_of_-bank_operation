@@ -107,15 +107,15 @@ if user_input_trans == "да":
         user_trans = search_trans(user_cur, search)
     else:
         user_trans= list(filter_by_currency(result_user, currency))
-    print(user_trans)
+    print(f'{user_trans}\n')
 
 elif user_input_trans == "нет":
     user_trans = user_cur
-    print(user_trans)
+    print(f'{user_trans}\n')
 
-print (""" ↓↓↓ РАСПЕЧАТЫВАЮ ИТОГОВЫЙ СПИСОК ТРАНЗАКЦИЙ ↓↓↓ """)
+print (f"↓↓↓ РАСПЕЧАТЫВАЮ ИТОГОВЫЙ СПИСОК ТРАНЗАКЦИЙ ↓↓↓ \n" )
 """ 7. Итоговый вывод отчета  """
-
+print(f'Всего банковских операций в выборке:{len(user_trans)}\n')
 
 for t in user_trans:
     if t['description'] == 'Открытие вклада':
