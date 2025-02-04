@@ -77,8 +77,9 @@ if user_input_sort == "да":
     print(result_sort)
 
 elif user_input_sort == "нет":
+    result_sort = result_user
 
-    print(result_user)
+    print(result_sort)
 
 user_input_currency = input("""Выводить только рублевые транзакции? Да/Нет
 """).lower()
@@ -86,11 +87,9 @@ user_input_currency = input("""Выводить только рублевые т
 
 if user_input_currency == "да":
     currency = "RUB"
-    if user_input_sort == "да":
-        user_cur = list(filter_by_currency(result_sort, currency))
-        print(user_cur)
-    else:
-        print("Некорректный выбор пользователя.")
+    user_cur = list(filter_by_currency(result_sort, currency))
+    print(user_cur)
+
 
 else:
     user_cur = result_user
@@ -105,6 +104,7 @@ if user_input_trans == "да":
     search = input("Введите название транзакции ")
     if user_input_trans == "да":
         user_trans = search_trans(user_cur, search)
+        print(f'{user_trans}\n')
     else:
         user_trans= list(filter_by_currency(result_user, currency))
     print(f'{user_trans}\n')
