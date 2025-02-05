@@ -1,11 +1,18 @@
-from src.external_second_api import convert_currency
 import json
-from typing import Any, Dict, List
 import logging
+import os
+from typing import Any, Dict, List
+
+from src.external_second_api import convert_currency
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, ".."))
+data_file_path = os.path.join(project_root, "logs", "utils.log")
+
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("../logs/utils.log")
+file_handler = logging.FileHandler(data_file_path)
 file_formatter = logging.Formatter(
     "%(levelname)s: %(name)s: Request time: %(asctime)s: %(message)s", "%Y-%m-%d %H:%M:%S"
 )
@@ -40,12 +47,6 @@ def read_file_trans(list_tr: str) -> List[Dict[str, Any]]:
     return operations_list
 
 
-list_trans = read_file_trans("../data/operations.json")
-
-print(list_trans)
-logger.info("Вывод на печать в консоль результата функции конвертации ")
-
-
 def convert_transaction(list_trans: List[Dict[str, Any]]) -> Any:
     """Функция вывода суммы транзакций"""
     logger.info("Запуск функции подсчета суммы транзакции")
@@ -73,7 +74,12 @@ def convert_transaction(list_trans: List[Dict[str, Any]]) -> Any:
     return total_usd
 
 
-conv_trans = convert_transaction(list_trans)
+if __name__ == "__main__":
+    list_trans = read_file_trans("../data/operations.json")
+    conv_trans = convert_transaction(list_trans)
 
-print(conv_trans)
-logger.info("Вывод подсчета суммы транзакции в консоль")
+    print(list_trans)
+    logger.info("Вывод на печать в консоль результата функции конвертации ")
+
+    print(conv_trans)
+    logger.info("Вывод подсчета суммы транзакции в консоль")

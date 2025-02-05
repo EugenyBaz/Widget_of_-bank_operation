@@ -1,5 +1,5 @@
-from typing import Union
 import logging
+from typing import Union
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)

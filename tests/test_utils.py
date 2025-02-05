@@ -31,6 +31,13 @@ def test_type_error(list_tr: str) -> None:
         assert result == []
 
 
+def test_wrong_data_in_file(list_tr: str) -> None:
+    """Проверка возврата пустого списка при наличии данных, неподходящих для JSON."""
+    with patch("builtins.open", mock_open(read_data="This is not a JSON.")):
+        result = read_file_trans(list_tr)
+        assert result == []
+
+
 @pytest.mark.parametrize(
     "short_list, expected",
     [
