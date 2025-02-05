@@ -8,10 +8,9 @@ def filter_by_state(
     new_list = []
 
     for i in list_dict:
-        if 'state' in i and  i["state"] == state_str:
+        if "state" in i and i["state"] == state_str:
             new_list.append(i)
     return new_list
-
 
 
 def sort_by_date(

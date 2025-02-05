@@ -1,9 +1,8 @@
-from src.masks import get_mask_card_number, get_mask_account
 from src.widget import mask_account_card, get_date
 from src.processing import filter_by_state, sort_by_date
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from src.generators import filter_by_currency
 from src.decorators import my_function
-from src.reader_csv_excel import  read_transactions_csv, read_transactions_exl
+from src.reader_csv_excel import read_transactions_csv, read_transactions_exl
 from src.regulators import search_trans
 import os
 import json
@@ -18,38 +17,38 @@ print("""Привет! Добро пожаловать в программу р�
 """ 1.Приветствие """
 
 user_input = input(
-"""Выберите необходимый пункт меню:
-1. Получить информацию о транзакциях из JSON-файла
-2. Получить информацию о транзакциях из CSV-файла
-3. Получить информацию о транзакциях из XLSX-файла
-""")
+    """Выберите необходимый пункт меню:
+    1. Получить информацию о транзакциях из JSON-файла
+    2. Получить информацию о транзакциях из CSV-файла
+    3. Получить информацию о транзакциях из XLSX-файла
+    """)
 """ 2. Выбор файлов """
 
 if user_input == "1":
-    print ("""Для обработки выбран JSON-файл """)
+    print("""Для обработки выбран JSON-файл """)
 
 if user_input == "2":
-    print ("""Для обработки выбран CSV-файл """)
+    print("""Для обработки выбран CSV-файл """)
 
 if user_input == "3":
     print("""Для обработки выбран XLSX-файл """)
 
+state = input("Введите статус, по которому необходимо выполнить фильтрацию"
+              "доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING")
 
-state = input("""Введите статус, по которому необходимо выполнить фильтрацию. 
-Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING""")
 """ 3. Выбор статусов """
 
-state_str= state.upper()
+state_str = state.upper()
 
 if user_input == "1":
-    with open(data_file_path_json, 'r', encoding= "utf-8") as file:
+    with open(data_file_path_json, 'r', encoding="utf-8") as file:
         trans_list_conv = json.load(file)
     result_user = filter_by_state(trans_list_conv, state_str)
     print(result_user)
 
 elif user_input == "2":
     file_json = read_transactions_csv(data_file_path)
-    result_user= filter_by_state(file_json, state_str)
+    result_user = filter_by_state(file_json, state_str)
     print(result_user)
 
 elif user_input == "3":
@@ -95,9 +94,8 @@ else:
     user_cur = result_user
     print(user_cur)
 
-
-user_input_trans = input("""Отфильтровать список транзакций по определенному слову 
-в описании? Да/Нет""").lower()
+user_input_trans = input("Отфильтровать список транзакций по определенному слову"
+                         "в описании? Да/Нет").lower()
 """ 6. Фильтр по слову в названии транзакции  """
 
 if user_input_trans == "да":
@@ -106,33 +104,37 @@ if user_input_trans == "да":
         user_trans = search_trans(user_cur, search)
         print(f'{user_trans}\n')
     else:
-        user_trans= list(filter_by_currency(result_user, currency))
+        user_trans = list(filter_by_currency(result_user, currency))
     print(f'{user_trans}\n')
 
 elif user_input_trans == "нет":
     user_trans = user_cur
     print(f'{user_trans}\n')
 
-print (f"↓↓↓ РАСПЕЧАТЫВАЮ ИТОГОВЫЙ СПИСОК ТРАНЗАКЦИЙ ↓↓↓ \n" )
+print("↓↓↓ РАСПЕЧАТЫВАЮ ИТОГОВЫЙ СПИСОК ТРАНЗАКЦИЙ ↓↓↓ \n")
 """ 7. Итоговый вывод отчета  """
 print(f'Всего банковских операций в выборке:{len(user_trans)}\n')
 
 for t in user_trans:
     if t['description'] == 'Открытие вклада':
-        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
+        print(f"{get_date(t['date'])} {t['description']}\n"
+              f"{mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']}"
+              f" {t['operationAmount']['currency']['name']}\n")
     elif t['description'] == 'Перевод с карты на карту':
-        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
+        print(
+            f"{get_date(t['date'])} {t['description']}\n"
+            f"{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\n"
+            f"Сумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
     elif t['description'] == 'Перевод организации':
-        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
+        print(
+            f"{get_date(t['date'])} {t['description']}\n"
+            f"{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\n"
+            f"Сумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
     elif t['description'] == 'Перевод со счета на счет':
-        print(f"{get_date(t['date'])} {t['description']}\n{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\nСумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
-
-
-
-
-
-
-
+        print(
+            f"{get_date(t['date'])} {t['description']}\n"
+            f"{mask_account_card(t['from'])} -> {mask_account_card(t['to'])}\n"
+            f"Сумма:{t['operationAmount']['amount']} {t['operationAmount']['currency']['name']}\n")
 
 # if __name__ == "__main__":
 #     number_card = input("Введите номер карты")
@@ -172,117 +174,117 @@ for t in user_trans:
 #
 # # if __name__ == "__main__":
 
-    # """ Сортировка по True и False"""
-    #
-    # reverse = input("Введите порядок сортировки True(сначала новые) или False(сначала ранние)")
-    # reverse_up = reverse.title()
-    # if reverse_up == "True":
-    #     reverse_str = True
-    # else:
-    #     reverse_str = False
-    #
-    # print(
-    #     sort_by_date(
-    #         [
-    #             {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-    #             {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-    #             {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-    #             {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-    #         ],
-    #         reverse_str,
-    #     )
-    # )
+# """ Сортировка по True и False"""
+#
+# reverse = input("Введите порядок сортировки True(сначала новые) или False(сначала ранние)")
+# reverse_up = reverse.title()
+# if reverse_up == "True":
+#     reverse_str = True
+# else:
+#     reverse_str = False
+#
+# print(
+#     sort_by_date(
+#         [
+#             {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
+#             {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
+#             {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
+#             {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
+#         ],
+#         reverse_str,
+#     )
+# )
 
-    #
-    # """ Сортировка по валюте USD или RUB"""
-    #
-    # transactions = (
-    #     [
-    #         {
-    #             "id": 939719570,
-    #             "state": "EXECUTED",
-    #             "date": "2018-06-30T02:08:58.425572",
-    #             "operationAmount": {
-    #                 "amount": "9824.07",
-    #                 "currency": {
-    #                     "name": "USD",
-    #                     "code": "USD"
-    #                 }
-    #             },
-    #             "description": "Перевод организации",
-    #             "from": "Счет 75106830613657916952",
-    #             "to": "Счет 11776614605963066702"
-    #         },
-    #         {
-    #             "id": 142264268,
-    #             "state": "EXECUTED",
-    #             "date": "2019-04-04T23:20:05.206878",
-    #             "operationAmount": {
-    #                 "amount": "79114.93",
-    #                 "currency": {
-    #                     "name": "USD",
-    #                     "code": "USD"
-    #                 }
-    #             },
-    #             "description": "Перевод со счета на счет",
-    #             "from": "Счет 19708645243227258542",
-    #             "to": "Счет 75651667383060284188"
-    #         },
-    #         {
-    #             "id": 873106923,
-    #             "state": "EXECUTED",
-    #             "date": "2019-03-23T01:09:46.296404",
-    #             "operationAmount": {
-    #                 "amount": "43318.34",
-    #                 "currency": {
-    #                     "name": "руб.",
-    #                     "code": "RUB"
-    #                 }
-    #             },
-    #             "description": "Перевод со счета на счет",
-    #             "from": "Счет 44812258784861134719",
-    #             "to": "Счет 74489636417521191160"
-    #         },
-    #         {
-    #             "id": 895315941,
-    #             "state": "EXECUTED",
-    #             "date": "2018-08-19T04:27:37.904916",
-    #             "operationAmount": {
-    #                 "amount": "56883.54",
-    #                 "currency": {
-    #                     "name": "USD",
-    #                     "code": "USD"
-    #                 }
-    #             },
-    #             "description": "Перевод с карты на карту",
-    #             "from": "Visa Classic 6831982476737658",
-    #             "to": "Visa Platinum 8990922113665229"
-    #         },
-    #         {
-    #             "id": 594226727,
-    #             "state": "CANCELED",
-    #             "date": "2018-09-12T21:27:25.241689",
-    #             "operationAmount": {
-    #                 "amount": "67314.70",
-    #                 "currency": {
-    #                     "name": "руб.",
-    #                     "code": "RUB"
-    #                 }
-    #             },
-    #             "description": "Перевод организации",
-    #             "from": "Visa Platinum 1246377376343588",
-    #             "to": "Счет 14211924144426031657"
-    #         }
-    #     ]
-    # )
-    #
-    # cur = input("Введите валюту USD или RUB")
-    # currency = cur.upper()
-    #
-    # usd_transactions = list(filter_by_currency(transactions, currency))
-    #
-    # for transaction in usd_transactions:
-    #     print(transaction)
+#
+# """ Сортировка по валюте USD или RUB"""
+#
+# transactions = (
+#     [
+#         {
+#             "id": 939719570,
+#             "state": "EXECUTED",
+#             "date": "2018-06-30T02:08:58.425572",
+#             "operationAmount": {
+#                 "amount": "9824.07",
+#                 "currency": {
+#                     "name": "USD",
+#                     "code": "USD"
+#                 }
+#             },
+#             "description": "Перевод организации",
+#             "from": "Счет 75106830613657916952",
+#             "to": "Счет 11776614605963066702"
+#         },
+#         {
+#             "id": 142264268,
+#             "state": "EXECUTED",
+#             "date": "2019-04-04T23:20:05.206878",
+#             "operationAmount": {
+#                 "amount": "79114.93",
+#                 "currency": {
+#                     "name": "USD",
+#                     "code": "USD"
+#                 }
+#             },
+#             "description": "Перевод со счета на счет",
+#             "from": "Счет 19708645243227258542",
+#             "to": "Счет 75651667383060284188"
+#         },
+#         {
+#             "id": 873106923,
+#             "state": "EXECUTED",
+#             "date": "2019-03-23T01:09:46.296404",
+#             "operationAmount": {
+#                 "amount": "43318.34",
+#                 "currency": {
+#                     "name": "руб.",
+#                     "code": "RUB"
+#                 }
+#             },
+#             "description": "Перевод со счета на счет",
+#             "from": "Счет 44812258784861134719",
+#             "to": "Счет 74489636417521191160"
+#         },
+#         {
+#             "id": 895315941,
+#             "state": "EXECUTED",
+#             "date": "2018-08-19T04:27:37.904916",
+#             "operationAmount": {
+#                 "amount": "56883.54",
+#                 "currency": {
+#                     "name": "USD",
+#                     "code": "USD"
+#                 }
+#             },
+#             "description": "Перевод с карты на карту",
+#             "from": "Visa Classic 6831982476737658",
+#             "to": "Visa Platinum 8990922113665229"
+#         },
+#         {
+#             "id": 594226727,
+#             "state": "CANCELED",
+#             "date": "2018-09-12T21:27:25.241689",
+#             "operationAmount": {
+#                 "amount": "67314.70",
+#                 "currency": {
+#                     "name": "руб.",
+#                     "code": "RUB"
+#                 }
+#             },
+#             "description": "Перевод организации",
+#             "from": "Visa Platinum 1246377376343588",
+#             "to": "Счет 14211924144426031657"
+#         }
+#     ]
+# )
+#
+# cur = input("Введите валюту USD или RUB")
+# currency = cur.upper()
+#
+# usd_transactions = list(filter_by_currency(transactions, currency))
+#
+# for transaction in usd_transactions:
+#     print(transaction)
 
 # if __name__ == "__main__":
 #     """ Вывод описаний транзакций по ключу "discriptions"""
@@ -395,10 +397,3 @@ if __name__ == "__main__":
     """Функция с декораторами записи логов со временем начала и конца, так же
     с выводом ошибок в консоль, либо в mylog.txt"""
     my_function(1, 2)
-
-
-
-
-
-
-

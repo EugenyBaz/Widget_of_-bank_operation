@@ -1,11 +1,13 @@
-import pytest
 from src.regulators import search_trans, list_of_trans_user
+from typing import Any
 
 
-def  test_search_trans(filter_cur):
-    result = search_trans(filter_cur,"Перевод организации")
+def test_search_trans(filter_cur: Any) -> None:
+    """Тестирование на корректность вывода транзакций по заданной валюте"""
+    result = search_trans(filter_cur, "Перевод организации")
     assert len(result) == 2
-    assert result == [{
+    assert result == [
+        {
             "id": 939719570,
             "state": "EXECUTED",
             "date": "2018-06-30T02:08:58.425572",
@@ -13,7 +15,8 @@ def  test_search_trans(filter_cur):
             "description": "Перевод организации",
             "from": "Счет 75106830613657916952",
             "to": "Счет 11776614605963066702",
-        }, {
+        },
+        {
             "id": 594226727,
             "state": "CANCELED",
             "date": "2018-09-12T21:27:25.241689",
@@ -21,10 +24,11 @@ def  test_search_trans(filter_cur):
             "description": "Перевод организации",
             "from": "Visa Platinum 1246377376343588",
             "to": "Счет 14211924144426031657",
-        }]
+        },
+    ]
 
 
-
-def test_list_of_trans_user(filter_cur):
-    result = list_of_trans_user(filter_cur, ['Перевод со счета на счет'] )
-    assert result == {'перевод со счета на счет':2}
+def test_list_of_trans_user(filter_cur: Any) -> None:
+    """Тестирование на корректность вывода транзакций по заданному наименованию транзакций"""
+    result = list_of_trans_user(filter_cur, ["Перевод со счета на счет"])
+    assert result == {"перевод со счета на счет": 2}
